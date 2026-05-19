@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vegas to Vegas — July 8–25, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D1017;--surf:#161C28;--surf2:#1D2436;
+  --b:rgba(255,255,255,.07);--b2:rgba(255,255,255,.13);
+  --tx:#E8DFD0;--mu:rgba(232,223,208,.55);--di:rgba(232,223,208,.3);
+  --terra:#C9693D;--tl:#E8876A;
+  --gold:#CFA050;--gl:#E5BA78;
+  --sky:#7BAFC8;--sage:#7EA889;
+  --grn:#5A9E6A;--red:#C0392B;
+  --r:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;font-size:14px;line-height:1.6;}
+
+/* ── HERO ── */
+.hero{position:relative;padding:70px 48px 54px;text-align:center;
+  background:radial-gradient(ellipse 80% 60% at 18% 40%,rgba(201,105,61,.13) 0%,transparent 70%),
+             radial-gradient(ellipse 60% 50% at 82% 60%,rgba(123,175,200,.07) 0%,transparent 70%),
+             linear-gradient(180deg,#08090F 0%,#0D1017 100%);
+  border-bottom:1px solid var(--b);overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30L60 30M30 0L30 60' stroke='rgba(255,255,255,.012)' stroke-width='1'/%3E%3C/svg%3E");
+  pointer-events:none;}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--terra);margin-bottom:18px;opacity:.85;}
+.hero h1{font-family:'Cormorant Garant',serif;font-size:clamp(44px,9vw,90px);font-weight:700;line-height:.94;letter-spacing:-.02em;margin-bottom:10px;}
+.hero h1 em{font-style:italic;color:var(--tl);}
+.hero-sub{font-family:'Cormorant Garant',serif;font-style:italic;font-size:clamp(13px,1.8vw,17px);color:var(--mu);margin-bottom:36px;max-width:720px;margin-left:auto;margin-right:auto;line-height:1.6;}
+.stats{display:flex;justify-content:center;max-width:700px;margin:0 auto;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;flex-wrap:wrap;}
+.stat{flex:1;min-width:90px;padding:14px 18px;border-right:1px solid var(--b);text-align:center;}
+.stat:last-child{border-right:none;}
+.sn{display:block;font-family:'Cormorant Garant',serif;font-size:28px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:3px;}
+.sl{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--di);}
+
+/* ── ROUTE STRIP ── */
+.rstrip{background:rgba(201,105,61,.06);border-bottom:1px solid var(--b);padding:10px 48px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;display:flex;align-items:center;gap:5px;}
+.rstrip::-webkit-scrollbar{display:none;}
+.rs{font-family:'DM Mono',monospace;font-size:10px;color:var(--mu);flex-shrink:0;}
+.ra{color:rgba(201,105,61,.35);font-size:9px;flex-shrink:0;}
+
+/* ── TOOLBAR ── */
+.toolbar{position:sticky;top:0;z-index:100;background:rgba(13,16,23,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--b);padding:10px 48px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.tl-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--di);margin-right:2px;white-space:nowrap;}
+.tb{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;padding:5px 12px;border:1px solid var(--b);background:transparent;color:var(--mu);border-radius:3px;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.tb:hover{border-color:var(--terra);color:var(--tl);}
+.tb.on{background:var(--terra);border-color:var(--terra);color:#fff;}
+.sep{flex:1;}
+.tu{font-size:10.5px;padding:5px 10px;border:1px solid var(--b);background:transparent;color:var(--di);border-radius:3px;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.tu:hover{color:var(--mu);border-color:var(--b2);}
+
+/* ── MAIN ── */
+.main{max-width:920px;margin:0 auto;padding:44px 48px 80px;}
+
+/* ── PHASE DIVIDER ── */
+.ph{display:flex;align-items:center;gap:14px;margin:48px 0 13px;}
+.ph:first-of-type{margin-top:0;}
+.ph-ln{flex:1;height:1px;background:var(--b);}
+.ph-t{font-family:'Cormorant Garant',serif;font-size:19px;font-weight:600;color:var(--tx);white-space:nowrap;}
+.ph-sub{font-family:'Cormorant Garant',serif;font-size:11px;font-style:italic;color:var(--terra);opacity:.7;white-space:nowrap;}
+
+/* ── DAY CARD ── */
+.dc{margin-bottom:5px;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;transition:border-color .2s;animation:rise .35s ease both;}
+.dc:hover{border-color:var(--b2);}
+.dc.open{border-color:rgba(201,105,61,.3);}
+.dc.hidden{display:none;}
+@keyframes rise{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* CARD HEADER */
+.ch{display:grid;grid-template-columns:84px 1fr auto;align-items:center;gap:14px;padding:14px 18px;cursor:pointer;background:var(--surf);transition:background .18s;user-select:none;}
+.ch:hover{background:var(--surf2);}
+.ch.open{background:rgba(201,105,61,.09);}
+.hdate{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--terra);letter-spacing:.04em;line-height:1.4;}
+.hday{font-size:9px;color:var(--di);margin-top:1px;letter-spacing:.08em;text-transform:uppercase;}
+.hdrive{font-family:'DM Mono',monospace;font-size:9px;color:var(--di);margin-top:3px;}
+.htitle{font-family:'Cormorant Garant',serif;font-size:18px;font-weight:700;color:var(--tx);line-height:1.2;display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.hsleep{font-size:11px;color:var(--mu);margin-top:2px;}
+.hright{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.star{color:var(--gold);font-size:13px;}
+.hike-flag{font-size:10px;color:var(--sage);letter-spacing:.06em;}
+
+/* BADGES */
+.badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:2px;}
+.be{background:rgba(126,168,137,.12);color:var(--sage);border:1px solid rgba(126,168,137,.25);}
+.bm{background:rgba(207,160,80,.1);color:var(--gold);border:1px solid rgba(207,160,80,.2);}
+.bt{background:rgba(201,105,61,.14);color:var(--tl);border:1px solid rgba(201,105,61,.28);}
+.bd{background:rgba(192,57,43,.1);color:#E57373;border:1px solid rgba(192,57,43,.22);}
+.bl{background:rgba(123,175,200,.1);color:var(--sky);border:1px solid rgba(123,175,200,.2);}
+
+/* TAGS */
+.tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;padding:2px 8px;border-radius:2px;}
+.tv{background:rgba(207,160,80,.12);color:var(--gold);border:1px solid rgba(207,160,80,.22);}
+.tdr{background:rgba(255,255,255,.04);color:var(--di);border:1px solid var(--b);}
+.tci{background:rgba(126,168,137,.1);color:var(--sage);border:1px solid rgba(126,168,137,.2);}
+.tco{background:rgba(123,175,200,.1);color:var(--sky);border:1px solid rgba(123,175,200,.2);}
+.tca{background:rgba(201,105,61,.12);color:var(--tl);border:1px solid rgba(201,105,61,.22);}
+.tn{background:rgba(90,158,106,.12);color:#7EC48E;border:1px solid rgba(90,158,106,.22);}
+
+.chev{color:var(--di);font-size:12px;transition:transform .25s;}
+.ch.open .chev{transform:rotate(180deg);color:var(--terra);}
+
+/* CARD BODY */
+.cb{display:none;background:rgba(0,0,0,.18);border-top:1px solid var(--b);}
+.cb.open{display:block;}
+.cbi{padding:18px 18px 22px;display:grid;gap:13px;}
+
+/* FIXED PILL */
+.fpill{display:flex;align-items:flex-start;gap:9px;background:rgba(201,105,61,.14);border:1px solid rgba(201,105,61,.35);border-radius:4px;padding:9px 14px;font-size:12.5px;color:var(--tl);line-height:1.5;}
+
+/* SECTION LABEL */
+.sl-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:7px;}
+.sl-must{color:var(--terra);}
+.sl-opt{color:var(--di);}
+.sl-skip{color:rgba(123,175,200,.6);}
+.sl-stay{color:var(--sky);}
+.sl-time{color:var(--gold);}
+.sl-hike{color:var(--sage);}
+.sl-src{color:rgba(123,175,200,.5);}
+
+/* TIMELINE */
+.tl{display:flex;flex-direction:column;gap:4px;}
+.tli{display:grid;grid-template-columns:105px 1fr;gap:9px;padding:8px 11px;border-left:2px solid var(--terra);background:rgba(201,105,61,.07);border-radius:0 3px 3px 0;align-items:start;}
+.tli.tf{background:rgba(201,105,61,.14);border-left-color:var(--tl);}
+.tli.to{background:rgba(255,255,255,.025);border-left-color:rgba(255,255,255,.1);}
+.tli.tm{background:rgba(126,168,137,.07);border-left-color:var(--sage);}
+.tli.tdr2{background:rgba(255,255,255,.02);border-left-color:var(--di);}
+.tli.thike{background:rgba(90,158,106,.09);border-left-color:var(--grn);}
+.tt{font-family:'DM Mono',monospace;font-size:10px;line-height:1.4;flex-shrink:0;}
+.tli .tt{color:var(--tl);}
+.tli.to .tt{color:var(--di);}
+.tli.tm .tt{color:var(--sage);}
+.tli.tdr2 .tt{color:var(--di);}
+.tli.thike .tt{color:var(--grn);}
+.tn2{font-size:13px;color:var(--tx);font-weight:500;line-height:1.3;}
+.tli.to .tn2{color:var(--mu);}
+.tnote{font-size:11.5px;color:var(--mu);margin-top:2px;line-height:1.4;}
+.tli.to .tnote{color:var(--di);}
+
+/* ITEM LISTS */
+.ilist{display:flex;flex-direction:column;gap:4px;}
+.mi{padding:7px 11px;background:rgba(201,105,61,.07);border-left:2px solid var(--terra);border-radius:0 3px 3px 0;font-size:13px;color:var(--tx);line-height:1.45;}
+.oi{padding:6px 11px;background:rgba(255,255,255,.025);border-left:2px solid rgba(255,255,255,.1);border-radius:0 3px 3px 0;font-size:12.5px;color:var(--mu);line-height:1.45;}
+.sw{display:flex;flex-wrap:wrap;gap:4px;}
+.si{font-size:11.5px;color:var(--di);padding:3px 9px;background:rgba(255,255,255,.03);border:1px solid var(--b);border-radius:2px;}
+
+/* HIKE BOX */
+.hike-box{border:1px solid rgba(90,158,106,.3);border-radius:4px;overflow:hidden;}
+.hike-box-hd{padding:10px 14px;background:rgba(90,158,106,.1);display:flex;align-items:center;gap:8px;}
+.hike-box-title{font-family:'Cormorant Garant',serif;font-size:15px;font-weight:600;color:#9DC4A0;}
+.hike-status{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:2px;background:rgba(90,158,106,.2);color:#7EC48E;border:1px solid rgba(90,158,106,.3);}
+.hike-status.closed{background:rgba(192,57,43,.15);color:#E57373;border-color:rgba(192,57,43,.3);}
+.hike-body{padding:11px 14px;display:grid;gap:7px;}
+.hike-row{display:flex;gap:10px;font-size:12.5px;align-items:baseline;}
+.hike-lbl{color:var(--di);font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;min-width:70px;flex-shrink:0;}
+.hike-val{color:var(--tx);}
+.hike-note{font-size:12px;color:var(--mu);line-height:1.5;padding:8px 11px;background:rgba(90,158,106,.05);border-radius:3px;}
+.hike-verdict{font-size:12px;font-style:italic;color:#9DC4A0;margin-top:2px;}
+
+/* BOXES */
+.nbox{padding:10px 13px;background:rgba(207,160,80,.07);border:1px solid rgba(207,160,80,.17);border-radius:4px;font-size:12.5px;color:rgba(232,223,208,.68);line-height:1.6;}
+.nbox b{color:var(--gl);font-weight:500;}
+.wbox{padding:10px 13px;background:rgba(201,105,61,.1);border:1px solid rgba(201,105,61,.28);border-radius:4px;font-size:12.5px;color:rgba(232,186,120,.9);line-height:1.6;}
+.wbox b{color:var(--tl);}
+.cbox{padding:10px 13px;background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.2);border-radius:4px;font-size:12px;color:rgba(229,115,115,.8);line-height:1.55;}
+.cbox b{color:#EF9A9A;font-weight:500;}
+
+/* STAY */
+.sgrid{display:flex;flex-direction:column;gap:5px;}
+.srow{display:flex;gap:10px;font-size:12.5px;align-items:baseline;}
+.sname{color:var(--sky);min-width:175px;font-weight:500;flex-shrink:0;}
+.sdesc{color:var(--di);}
+.spick{margin-top:5px;font-size:12px;font-style:italic;color:var(--gold);opacity:.8;}
+
+/* SOURCES */
+.srcwrap{display:flex;flex-wrap:wrap;gap:5px;}
+.srclink{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.04em;color:var(--sky);text-decoration:none;padding:3px 8px;border:1px solid rgba(123,175,200,.18);border-radius:2px;transition:all .18s;opacity:.75;}
+.srclink:hover{opacity:1;border-color:rgba(123,175,200,.38);}
+
+/* BOOKINGS */
+.book-sec{margin-top:44px;border:1px solid rgba(201,105,61,.25);border-radius:var(--r);overflow:hidden;}
+.book-hd{padding:15px 20px;background:rgba(201,105,61,.09);border-bottom:1px solid rgba(201,105,61,.2);}
+.book-hd h3{font-family:'Cormorant Garant',serif;font-size:18px;font-weight:600;color:var(--tl);}
+.book-hd p{font-size:12px;color:var(--mu);margin-top:2px;}
+.book-list{padding:14px 20px;display:flex;flex-direction:column;gap:8px;}
+.brow{display:grid;grid-template-columns:18px 1fr auto;gap:11px;align-items:start;padding:9px 11px;border-radius:4px;}
+.brow.p1{background:rgba(192,57,43,.08);border:1px solid rgba(192,57,43,.18);}
+.brow.p2{background:rgba(201,105,61,.07);border:1px solid rgba(201,105,61,.16);}
+.brow.p3{background:rgba(255,255,255,.03);border:1px solid var(--b);}
+.bwhat{font-size:13px;color:var(--tx);font-weight:500;}
+.bwhen{font-size:11.5px;color:var(--mu);margin-top:2px;}
+.blink{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--sky);text-decoration:none;white-space:nowrap;padding:4px 9px;border:1px solid rgba(123,175,200,.2);border-radius:2px;opacity:.8;transition:opacity .18s;flex-shrink:0;}
+.blink:hover{opacity:1;}
+
+/* SAVE */
+.save{margin-top:32px;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;}
+.save-hd{padding:16px 20px;cursor:pointer;background:var(--surf);display:flex;align-items:center;justify-content:space-between;user-select:none;transition:background .18s;}
+.save-hd:hover{background:var(--surf2);}
+.save-hd-t{font-family:'Cormorant Garant',serif;font-size:17px;font-weight:600;color:var(--mu);}
+.save-hd-s{font-size:11.5px;color:var(--di);margin-top:2px;}
+.save-bd{display:none;padding:18px 20px 22px;background:rgba(0,0,0,.12);border-top:1px solid var(--b);}
+.save-bd.open{display:block;}
+.scat{margin-bottom:16px;}
+.scat-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:7px;opacity:.7;}
+.sitems{display:flex;flex-wrap:wrap;gap:4px;}
+.sitem{font-size:12px;color:var(--di);padding:3px 9px;background:rgba(255,255,255,.03);border:1px solid var(--b);border-radius:2px;}
+
+/* SCROLL TOP */
+.totop{position:fixed;bottom:24px;right:24px;width:38px;height:38px;background:var(--terra);border:none;border-radius:50%;color:#fff;font-size:14px;cursor:pointer;opacity:0;transform:translateY(8px);transition:all .25s;z-index:200;box-shadow:0 4px 14px rgba(201,105,61,.4);}
+.totop.show{opacity:1;transform:translateY(0);}
+
+footer{text-align:center;padding:26px 48px 44px;border-top:1px solid var(--b);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--di);text-transform:uppercase;}
+
+@media(max-width:600px){
+  .hero{padding:42px 18px 34px;}
+  .main{padding:26px 18px 56px;}
+  .toolbar,.rstrip{padding:9px 18px;}
+  .ch{grid-template-columns:66px 1fr auto;gap:9px;padding:12px 13px;}
+  .cbi{padding:13px 13px 17px;}
+  .tli{grid-template-columns:80px 1fr;}
+  .stat{padding:12px 12px;}
+  .hright{gap:5px;}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="eyebrow">July 8 – 25, 2026 &nbsp;·&nbsp; The Great Southwest Loop</div>
+  <h1>Vegas to <em>Vegas</em></h1>
+  <p class="hero-sub">Las Vegas · San Francisco · Carmel · Pacific Coast Highway · Los Angeles · Orange County · San Diego · Sedona · Grand Canyon · Antelope Canyon · Zion · Emerald Cave</p>
+  <div class="stats">
+    <div class="stat"><span class="sn">18</span><span class="sl">Days</span></div>
+    <div class="stat"><span class="sn">~2,400</span><span class="sl">Miles</span></div>
+    <div class="stat"><span class="sn">11</span><span class="sl">Destinations</span></div>
+    <div class="stat"><span class="sn">4</span><span class="sl">Nat'l Parks</span></div>
+    <div class="stat"><span class="sn">3</span><span class="sl">Presentations</span></div>
+    <div class="stat"><span class="sn">1</span><span class="sl">Hike Plan</span></div>
+  </div>
+</section>
+
+<div class="rstrip" id="rstrip"></div>
+
+<div class="toolbar">
+  <span class="tl-lbl">Filter</span>
+  <button class="tb on" data-f="all">All Days</button>
+  <button class="tb" data-f="vegas">Vegas</button>
+  <button class="tb" data-f="drive">Drive Days</button>
+  <button class="tb" data-f="coast">Coast & PCH</button>
+  <button class="tb" data-f="city">Cities</button>
+  <button class="tb" data-f="canyon">Canyon Country</button>
+  <button class="tb" data-f="national">National Parks</button>
+  <span class="sep"></span>
+  <button class="tu" id="expAll">Expand All</button>
+  <button class="tu" id="colAll">Collapse All</button>
+</div>
+
+<main class="main" id="main"></main>
+<button class="totop" id="toTop">↑</button>
+
+<script>
+const routeStops=['Las Vegas','Hoover Dam','San Francisco','Carmel','Big Sur','Morro Bay','Santa Barbara','Malibu','Los Angeles','Laguna Beach','Escondido','San Diego','Sedona','Grand Canyon','Antelope Canyon','Horseshoe Bend','Zion','Boulder City','Las Vegas'];
+
+const phases=[
+  {t:'Part I — Las Vegas',         s:'July 8–10',  d:[0,1,2]},
+  {t:'Part II — SF & Carmel',      s:'July 11–13', d:[3,4,5]},
+  {t:'Part III — Pacific Coast',   s:'July 14–15', d:[6,7]},
+  {t:'Part IV — LA & OC',          s:'July 16–18', d:[8,9,10]},
+  {t:'Part V — San Diego',         s:'July 19–20', d:[11,12]},
+  {t:'Part VI — Canyon Country',   s:'July 21–25', d:[13,14,15,16,17]},
+];
+
+/* manage: e=easy, l=local, m=mod, t=tight, d=drive */
+const D=[
+/* 0 — Jul 8 */
+{dt:'Wed · Jul 8',dn:'Day 1',title:'Las Vegas Arrival',sleep:'Las Vegas / Hilton Grand Vacations',cat:'vegas',mg:'e',star:false,hike:false,miles:3,
+fixed:null,
+cut:'Keep tonight low-effort. Do not start the trip exhausted.',
+note:'<b>Start slow.</b> This is an 18-day trip. The instinct to sightsee immediately is real — resist it. Get water and snacks for the days ahead.',
+tl:[
+ {t:'Arrival',tp:'f',n:'Check in + unpack',no:'Land → rental car → hotel. Hydrate. Airport + hotel check-in can add 20–40 min.'},
+ {t:'Evening',tp:'m',n:'Easy dinner near hotel',no:'No sightseeing. Grab water and snacks for July 9–11.'},
+],
+must:['Arrive, check in, rest','Easy dinner if energy allows','Light Strip walk — only if you feel awake'],
+opt:['Bellagio Fountains if hotel is close and you feel up for it'],
+skip:['Red Rock Canyon','Valley of Fire','Emerald Cave — saved for July 25','Hoover Dam — saved for July 25'],
+stay:null,src:[]},
+
+/* 1 — Jul 9 */
+{dt:'Thu · Jul 9',dn:'Day 2',title:'Vegas Day + Hilton Presentation',sleep:'Las Vegas',cat:'vegas',mg:'l',star:false,hike:false,miles:8,
+fixed:'📌 Hilton Presentation — 2:45 PM. Completing eligibility requirements matters. Missing it can trigger full retail charges.',
+cut:'Protect the presentation buffer. Do not schedule anything expensive or far immediately after.',
+note:'<b>Best flow:</b> Morning Strip sights → lunch → 2:45 PM Hilton presentation → Wynn/Encore → dinner → Fremont or nightlife. Avoid overdoing tonight before the big drive day.',
+tl:[
+ {t:'9:30–10:45 AM',tp:'',n:'Bellagio Conservatory & Fountains',no:'Indoor, air-conditioned, beautiful. Also see Chihuly lobby ceiling.'},
+ {t:'10:45 AM–12:15 PM',tp:'',n:'Venetian / Palazzo',no:'Grand Canal Shoppes, canals, coffee or lunch option.'},
+ {t:'12:15–1:45 PM',tp:'m',n:'Lunch + buffer before presentation',no:'Eat, hydrate. Leave buffer so presentation is not stressful.'},
+ {t:'2:45–5:15 PM',tp:'f',n:'Hilton Presentation (fixed)',no:'Assume it may run long. Post-presentation decompression buffer built in.'},
+ {t:'5:30–7:00 PM',tp:'',n:'Wynn / Encore',no:'Resort walk, floral displays, dinner option.'},
+ {t:'8:00 PM+',tp:'o',n:'Dinner + nightlife',no:'Fremont Street, lounge, or club — based on energy. Hard stop if tired.'},
+],
+must:['Bellagio Conservatory & Fountains','Venetian / Palazzo walk','Wynn / Encore stroll','Nightlife / dinner experience'],
+opt:['Fremont Street Experience','The Chandelier at Cosmopolitan','Caesars Forum Shops','AREA15 / Interstellar Arc'],
+skip:['Red Rock — presentation breaks the day','Valley of Fire — July heat','Emerald Cave — July 25','Late heavy clubbing if it ruins July 10–11'],
+stay:null,src:[]},
+
+/* 2 — Jul 10 */
+{dt:'Fri · Jul 10',dn:'Day 3',title:'Sphere Day',sleep:'Las Vegas',cat:'vegas',mg:'l',star:false,hike:false,miles:30,
+fixed:'📌 Wizard of Oz at Sphere — 2:00 PM. Arrive Sphere by 12:30 PM for parking + security.',
+cut:'Skip anything risking lateness for 2 PM. Sleep early — massive drive tomorrow.',
+note:'<b>Sleep early tonight.</b> July 11 is a 570-mile drive day — the hardest repositioning day of the entire trip. The Sphere is the event; keep the rest of the day light.',
+tl:[
+ {t:'8:00–10:30 AM',tp:'o',n:'Optional: Red Rock Canyon scenic drive',no:'Only if up early. Scenic drive only — no hiking. Skip if tired or very hot.'},
+ {t:'10:30 AM–12:30 PM',tp:'m',n:'Brunch + pool / rest',no:'Main goal: be rested. AREA15 if you want an indoor alternative.'},
+ {t:'12:30–1:30 PM',tp:'f',n:'Arrive Sphere early',no:'Parking + security can take 30+ min. Exterior photo op.'},
+ {t:'2:00–3:30 PM',tp:'f',n:'Wizard of Oz at Sphere',no:'Main event. Verify ticket time on Ticketmaster confirmation.'},
+ {t:'4:00–8:30 PM',tp:'o',n:'Light Strip evening + early dinner',no:'Fountains, Chandelier, dinner. Keep it easy. SLEEP EARLY.'},
+],
+must:['The Sphere — Wizard of Oz, 2 PM — the main event','Rest before and after','Easy dinner + final Vegas night'],
+opt:['Red Rock Canyon scenic drive (early morning only)','AREA15 if not done July 9','Pool morning or brunch'],
+skip:['Emerald Cave — timing too tight','Valley of Fire — heat + pressure','Anything risking lateness for 2 PM'],
+stay:null,src:[{l:'Sphere tickets',u:'https://www.ticketmaster.com/the-wizard-of-oz-at-sphere-tickets/artist/3552227'}]},
+
+/* 3 — Jul 11 */
+{dt:'Sat · Jul 11',dn:'Day 4',title:'Drive Day — Las Vegas to SF / Bay Area',sleep:'San Francisco / Bay Area',cat:'drive',mg:'d',star:false,hike:false,miles:570,
+fixed:null,
+cut:'No sightseeing. Gas / food / restroom stops only. This is a repositioning day.',
+note:'<b>This is the boring day — and that is okay.</b> You traded one dull drive for a dedicated Carmel day and 2 full days in LA. Check Caltrans QuickMap before leaving. Put on a great podcast and bank the miles.',
+tl:[
+ {t:'6:30–7:00 AM',tp:'dr',n:'Depart Las Vegas',no:'Leave early. I-15 to I-5 or CA-99. First leg to Barstow/Bakersfield.'},
+ {t:'9:00–9:30 AM',tp:'m',n:'Gas + restroom',no:'Barstow or Tehachapi/Bakersfield area.'},
+ {t:'12:00–1:00 PM',tp:'m',n:'Lunch + gas',no:'Bakersfield / Buttonwillow / Kettleman City. Keep it quick.'},
+ {t:'3:45–4:15 PM',tp:'m',n:'Final rest stop',no:'Los Banos / Santa Nella / Gilroy area. Last break before Bay Area traffic.'},
+ {t:'7:00–8:30 PM',tp:'dr',n:'Arrive SF / Bay Area hotel',no:'Check in, easy dinner only. Do not add any activities tonight.'},
+],
+must:['Leave by 6:30–7:00 AM','Gas + food stops only','Arrive, check in, sleep'],
+opt:['Podcast / audiobook day — lean into it','Switch drivers if traveling with someone'],
+skip:['Mammoth Lakes','Alabama Hills','Yosemite','Death Valley','All sightseeing today'],
+stay:{o:[['San Francisco (city)','Best if seeing friends tonight'],['San Mateo / SFO area','Better parking + value'],['Emeryville / Berkeley','Good value, easy Bay Area access']],p:'SF proper if seeing friends. Bay Area suburbs save cost and parking stress.'},
+src:[{l:'CA traffic — QuickMap',u:'https://quickmap.dot.ca.gov/'}]},
+
+/* 4 — Jul 12 */
+{dt:'Sun · Jul 12',dn:'Day 5',title:'San Francisco → Carmel / Monterey',sleep:'Carmel / Monterey / Pacific Grove',cat:'city',mg:'m',star:false,hike:false,miles:132,
+fixed:null,
+cut:'Leave SF by ~6 PM. Do not add Santa Cruz — it makes the Carmel arrival too late.',
+note:'SF is mainly for sightseeing since you\'ve been before. Keep it selective — Golden Gate + Marin Headlands + Wharf + one flex stop. The drive south to Carmel in the evening is beautiful.',
+tl:[
+ {t:'9:00–10:15 AM',tp:'',n:'Golden Gate Bridge + Battery Spencer',no:'Marin Headlands viewpoint. Best if fog allows. Hawk Hill if clear.'},
+ {t:'10:30–11:15 AM',tp:'',n:'Palace of Fine Arts',no:'Easy photogenic stop. Crissy Field if you want a bridge walk.'},
+ {t:'11:30 AM–1:30 PM',tp:'',n:'Fisherman\'s Wharf / Pier 39',no:'Lunch, sea lions, wharf walk. North Beach option nearby.'},
+ {t:'2:00–3:00 PM',tp:'o',n:'Classic SF flex stop',no:'Pick ONE: Twin Peaks / Lombard / Chinatown / Marshall\'s Beach.'},
+ {t:'4:00–5:30 PM',tp:'m',n:'Early dinner / reset before drive south',no:'Eat before leaving. Avoid rushing a late Carmel check-in.'},
+ {t:'6:00–9:00 PM',tp:'dr',n:'Drive SF → Carmel / Monterey',no:'US-101 simpler. CA-1 prettier but slower. Pigeon Point only if daylight works.'},
+],
+must:['Golden Gate Bridge + Battery Spencer / Marin Headlands','Palace of Fine Arts','Fisherman\'s Wharf / Pier 39 lunch','Afternoon drive south to Carmel'],
+opt:['Twin Peaks (if clear)','Lombard Street','Chinatown','Pigeon Point Lighthouse (en route if light remains)'],
+skip:['Point Reyes — too far north','Napa Valley Wine Train','Full Santa Cruz day','Monterey Aquarium — July 13 is better'],
+stay:{o:[['Carmel-by-the-Sea','Best atmosphere — the village in the morning is wonderful'],['Monterey','Easier late dinner + parking'],['Pacific Grove','Quieter, coastal, good value']],p:'Carmel if affordable. Monterey if arriving after 9 PM.'},
+src:[]},
+
+/* 5 — Jul 13 */
+{dt:'Mon · Jul 13',dn:'Day 6',title:'Full Carmel Day',sleep:'Carmel / Monterey / Pacific Grove',cat:'coast',mg:'e',star:true,hike:false,miles:27,
+fixed:null,
+cut:'If running late, protect Point Lobos above all else. It is the gem of this day.',
+note:'<b>⭐ Carmel earns a full dedicated day.</b> The village has no street addresses and no chain restaurants — it\'s genuinely charming. Point Lobos is one of the most beautiful state parks in California. Check reserve.ca.gov for a day-use reservation (may be required in summer).',
+tl:[
+ {t:'8:30–10:00 AM',tp:'',n:'Carmel-by-the-Sea village',no:'Coffee, shops, courtyards. Walk Ocean Ave end-to-end.'},
+ {t:'10:00–10:45 AM',tp:'',n:'Carmel Beach',no:'Walk to the bottom of Ocean Ave. White sand, cypress trees.'},
+ {t:'11:00 AM–1:00 PM',tp:'',n:'17-Mile Drive + Lone Cypress',no:'$12 toll. Spanish Bay, Lone Cypress, Bird Rock, Pebble Beach coastline. ~2 hrs relaxed.'},
+ {t:'1:00–2:00 PM',tp:'m',n:'Lunch',no:'Carmel / Pacific Grove. Avoid arriving hungry at Point Lobos.'},
+ {t:'2:15–5:45 PM',tp:'',n:'Point Lobos State Natural Reserve',no:'China Cove, Bird Island, Cypress Grove, Sea Lion Point. Last entry 6:30 PM. Parking can fill.'},
+ {t:'6:15–8:30 PM',tp:'o',n:'Pacific Grove / Monterey dinner',no:'Lover\'s Point or Cannery Row. Choose one. Sleep early — Big Sur tomorrow.'},
+],
+must:['Carmel-by-the-Sea village — Ocean Ave, coffee, courtyards','Carmel Beach — walk to the end of Ocean Ave','17-Mile Drive + Lone Cypress ($12 toll)','Point Lobos State Natural Reserve — China Cove, Cypress Grove, Sea Lion Point'],
+opt:['Pacific Grove / Lover\'s Point evening walk','Cannery Row Monterey stroll','Mission Ranch brunch (scenic meal)','Scenic Road drive Carmel'],
+skip:['Monterey Bay Aquarium — 3+ hrs, competes with Point Lobos time','Full Santa Cruz day','Roaring Camp Railroads'],
+stay:null,
+src:[{l:'Point Lobos State Park',u:'https://www.parks.ca.gov/pointlobos'},{l:'17-Mile Drive',u:'https://www.pebblebeach.com/17-mile-drive/'}]},
+
+/* 6 — Jul 14 */
+{dt:'Tue · Jul 14',dn:'Day 7',title:'Focused Big Sur',sleep:'Cambria / Morro Bay',cat:'coast',mg:'m',star:true,hike:true,miles:101,
+fixed:null,
+cut:'Check Caltrans before leaving. Cap stops at the must-see list. Do not force Pfeiffer Beach AND the Pfeiffer Falls hike — pick one.',
+note:'<b>⭐ This is the best day of the California leg.</b> Start by 8 AM. Big Sur is landslide-prone — always check Highway 1 status the night before and morning-of at roads.dot.ca.gov.',
+warn:'<b>⚠️ McWay Falls Overlook Trail is CLOSED</b> for long-term repairs (confirmed 2026). There is a small Highway 1 roadside viewing area — short but still worth stopping. Verify at parks.ca.gov before going.',
+tl:[
+ {t:'7:30–7:45 AM',tp:'f',n:'⚠️ Check Highway 1 status',no:'roads.dot.ca.gov + quickmap.dot.ca.gov before leaving. If closed, reroute via US-101.'},
+ {t:'8:15–9:15 AM',tp:'',n:'Garrapata / Soberanes Point',no:'Coastal bluff viewpoint. 6.7 mi south of Carmel. Short walk, not a long hike. Or: use this window for Soberanes Canyon Trail hike — see hike section below.'},
+ {t:'9:30–10:15 AM',tp:'',n:'Hurricane Point Vista + Bixby Creek Bridge',no:'Iconic Big Sur photo. Legal pullouts only — bridge traffic can be chaotic.'},
+ {t:'10:45–11:30 AM',tp:'',n:'Big Sur River Inn',no:'Coffee, snack, river chairs. Good bathroom stop.'},
+ {t:'11:15 AM–12:45 PM',tp:'hike',n:'🥾 Pfeiffer Falls Trail (recommended hike)',no:'2 miles RT, 75–90 min. Waterfall + redwoods. OPEN confirmed 2026. This is the one formal hike built into the day.'},
+ {t:'11:40 AM–1:15 PM',tp:'f',n:'Nepenthe / Cafe Kevah — lunch',no:'Famous Big Sur view. Cafe Kevah usually faster. Cap time if busy.'},
+ {t:'1:30–2:30 PM',tp:'o',n:'Pfeiffer Beach — if parking pre-booked',no:'Purple sand + keyhole rock. Narrow road, limited parking. Skip if delay looks bad. Do not force both hike AND beach.'},
+ {t:'3:00–3:25 PM',tp:'',n:'McWay Falls roadside viewing area',no:'Overlook Trail CLOSED. View from small Highway 1 pullout. Confirm status before going.'},
+ {t:'4:00–4:20 PM',tp:'o',n:'Big Creek Bridge / Gamboa Point',no:'Quick coastal pullout if safe and legal.'},
+ {t:'5:30–6:00 PM',tp:'o',n:'Ragged Point area',no:'Rest stop + coast view before San Simeon.'},
+ {t:'6:30–7:00 PM',tp:'',n:'Elephant Seal Vista Point',no:'Near San Simeon. Stay behind barriers. Can be windy.'},
+ {t:'7:15–8:30 PM',tp:'m',n:'Cambria / Morro Bay — check in + dinner',no:'Moonstone Beach boardwalk if Cambria. Morro Rock if Morro Bay.'},
+],
+hikes:[
+ {name:'Pfeiffer Falls Trail / Valley View',status:'OPEN',dist:'~2 miles RT',time:'75–90 min',diff:'Moderate',fit:'July 14, 11:15 AM–12:45 PM after Big Sur River Inn',verdict:'Recommended — waterfall + redwoods, best hike fit in the day',swap:'Make Big Sur River Inn quick. Skip Pfeiffer Beach if hiking this.',src:{l:'Pfeiffer Falls Trail',u:'https://www.parks.ca.gov/?page_id=29833'},note:'California State Parks confirms Valley View and Pfeiffer Falls Trail are OPEN. 2 miles roundtrip, moderate.'},
+ {name:'Soberanes Canyon Trail',status:'OPEN (out-and-back only)',dist:'~2.5 miles out-and-back',time:'90–120 min',diff:'Moderate',fit:'July 14, 8:15–10:15 AM — alternative to the Garrapata bluff stop',verdict:'Good if you want an early canyon hike. Makes the Big Sur driving day slightly tighter.',swap:'Replaces the short Soberanes/Garrapata bluff stop. Rocky Ridge Trail CLOSED — out-and-back only.',src:{l:'Soberanes Canyon Trail',u:'https://www.parks.ca.gov/?page_id=579'},note:'Rocky Ridge loop is CLOSED. Do not plan the full loop. Out-and-back only.'},
+],
+must:['⚠️ Check Highway 1 status before leaving (roads.dot.ca.gov)','Garrapata / Soberanes Point coastal stop','Hurricane Point Vista + Bixby Creek Bridge','Big Sur River Inn coffee/snack stop','Nepenthe / Cafe Kevah lunch','🥾 Pfeiffer Falls Trail hike (recommended — 2 mi, 75 min, OPEN)','McWay Falls roadside view (trail CLOSED — roadside pullout only)','Elephant Seal Vista Point'],
+opt:['Pfeiffer Beach — only if recreation.gov parking is pre-booked AND not hiking Pfeiffer Falls','Big Creek Bridge pullout','Ragged Point rest stop'],
+skip:['Full Point Sur Lighthouse tour (2.5 hrs)','Long Andrew Molera hike','Forcing both Pfeiffer Falls hike AND Pfeiffer Beach — pick one'],
+stay:{o:[['Cambria / Moonstone Beach','Best scenic overnight — beautiful small town'],['Morro Bay','Better value, Morro Rock, good restaurants'],['San Luis Obispo','More nightlife, less coastal']],p:'Cambria if reasonably priced. Morro Bay for better value.'},
+src:[{l:'Highway 1 status',u:'https://roads.dot.ca.gov/?roadnumber=1'},{l:'Caltrans QuickMap',u:'https://quickmap.dot.ca.gov/'},{l:'McWay Falls',u:'https://www.parks.ca.gov/?page_id=578'},{l:'Pfeiffer Falls Trail',u:'https://www.parks.ca.gov/?page_id=29833'},{l:'Soberanes Canyon',u:'https://www.parks.ca.gov/?page_id=579'},{l:'Garrapata State Park',u:'https://www.parks.ca.gov/garrapata/'},{l:'Pfeiffer Beach',u:'https://www.fs.usda.gov/r05/lospadres/recreation/pfeiffer-beach-day-use'}]},
+
+/* 7 — Jul 15 */
+{dt:'Wed · Jul 15',dn:'Day 8',title:'Central Coast → Santa Barbara',sleep:'Santa Barbara',cat:'coast',mg:'m',star:false,hike:false,miles:131,
+fixed:null,cut:'Pick Hearst Castle OR Solvang — not both. If tired, skip Solvang.',
+note:'Santa Barbara is one of the most underrated stops on this trip. The Spanish colonial Courthouse, the Funk Zone wine bar scene, Stearns Wharf at sunset — give it a proper evening.',
+tl:[
+ {t:'8:30–9:30 AM',tp:'',n:'Moonstone Beach or Morro Rock morning',no:'Choose based on where you slept. Easy scenic start.'},
+ {t:'9:45–10:45 AM',tp:'',n:'Morro Bay / Morro Rock',no:'Short waterfront stroll + iconic rock view.'},
+ {t:'11:15 AM–12:15 PM',tp:'o',n:'San Luis Obispo / Madonna Inn quick stop',no:'Quirky pink hotel — worth 20 min if passing through.'},
+ {t:'12:35–1:30 PM',tp:'m',n:'Pismo Beach / Splash Café',no:'Clam chowder bread bowl — classic Central Coast lunch.'},
+ {t:'2:45–4:00 PM',tp:'o',n:'Solvang quick stop (pick this OR more SB time)',no:'Danish village. Nice but not mandatory. If tired, skip it.'},
+ {t:'5:00–6:00 PM',tp:'',n:'Santa Barbara County Courthouse',no:'Architecture, gardens, tower. Free. Downtown parking.'},
+ {t:'6:15–8:30 PM',tp:'',n:'Stearns Wharf + Funk Zone / Lower State',no:'Waterfront sunset, dinner, McConnell\'s Ice Cream.'},
+],
+must:['Moonstone Beach or Morro Rock morning','Morro Bay waterfront stroll','Santa Barbara County Courthouse (free, stunning architecture)','Stearns Wharf waterfront walk','Funk Zone for dinner — great wine bars','McConnell\'s Ice Cream'],
+opt:['San Luis Obispo / Madonna Inn quick stop','Pismo Beach / Splash Café clam chowder','Solvang (pick this OR extra SB time, not both)','Old Mission Santa Barbara'],
+skip:['Full Hearst Castle tour — takes 2+ hrs, kills the day','Both Solvang AND Santa Barbara deeply'],
+stay:{o:[['West Beach / Waterfront','Best vacation feel, walkable to wharf'],['Funk Zone / Lower State Street','Best restaurants + nightlife'],['Montecito','Upscale, quieter, slightly removed']],p:'Waterfront or Funk Zone — walk to dinner and the wharf easily.'},
+src:[]},
+
+/* 8 — Jul 16 */
+{dt:'Thu · Jul 16',dn:'Day 9',title:'Santa Barbara → Los Angeles',sleep:'Los Angeles',cat:'city',mg:'m',star:false,hike:false,miles:83,
+fixed:null,cut:'This is a coastal arrival day — save heavy LA sightseeing for July 17.',
+note:'<b>Route:</b> SB → PCH through Malibu → El Matador → Point Dume → Santa Monica → Venice → West Hollywood. Take PCH — do not rush it. Griffith only if energy is great on arrival.',
+tl:[
+ {t:'8:30–10:00 AM',tp:'o',n:'Santa Barbara morning catch-up',no:'Whatever you missed July 15. Depart by ~10 AM.'},
+ {t:'11:15 AM–12:15 PM',tp:'o',n:'Malibu coast / El Matador Beach',no:'Dramatic sea stacks. Choose beach or pier — not both.'},
+ {t:'12:45–2:15 PM',tp:'',n:'Point Dume',no:'Cliff + beach viewpoint, short walk. Protected stop.'},
+ {t:'3:15–4:30 PM',tp:'',n:'Santa Monica Pier',no:'Classic arrival stop. Parking can be frustrating — allow buffer.'},
+ {t:'4:45–6:15 PM',tp:'',n:'Venice Beach Boardwalk + Venice Canals',no:'Boardwalk energy + quieter canals walk. Two different vibes.'},
+ {t:'7:00–8:30 PM',tp:'m',n:'LA hotel check-in + dinner',no:'Check in. Dinner near hotel. Griffith only if hotel is very close and energy is strong.'},
+],
+must:['Santa Barbara morning walk / coffee','Malibu coast drive on PCH','El Matador Beach or Point Dume','Santa Monica Pier','Venice Beach Boardwalk + Venice Canals'],
+opt:['Griffith Observatory (only if great energy on arrival)','Getty Center (timed tickets required)','Rodeo Drive / Beverly Hills drive-through'],
+skip:['Catalina Island — needs a full day','Universal Studios — July 17','Deep Pasadena'],
+stay:{o:[['West Hollywood / Beverly Grove','Best overall base — central, great food'],['Santa Monica','Best beach feel'],['Beverly Hills / Century City','Polished, pricier']],p:'West Hollywood / Beverly Grove — best flexibility for both LA days.'},
+src:[]},
+
+/* 9 — Jul 17 */
+{dt:'Fri · Jul 17',dn:'Day 10',title:'Full Los Angeles Day',sleep:'Los Angeles',cat:'city',mg:'m',star:false,hike:false,miles:37.5,
+fixed:null,cut:'Classic LA sightseeing OR Universal Studios — not both in one day.',
+note:'<b>Best flow:</b> Griffith → Hollywood → Beverly Hills/Rodeo → LACMA → Last Bookstore → Angels Flight → dinner in WeHo or Koreatown. LA traffic is unpredictable — always overestimate drive time between stops.',
+tl:[
+ {t:'8:00–9:30 AM',tp:'',n:'Griffith Observatory / Hollywood Sign viewpoint',no:'Start early — parking easier. Lake Hollywood Park is an easier Hollywood Sign view.'},
+ {t:'9:45–10:30 AM',tp:'o',n:'Hollywood Walk of Fame — quick pass only',no:'Very quick photo stop only. Overrated as a main activity.'},
+ {t:'11:15 AM–12:30 PM',tp:'',n:'Beverly Hills / Rodeo Drive',no:'Short luxury photo/stroll walk. Parking garages available.'},
+ {t:'12:45–1:30 PM',tp:'',n:'Urban Light at LACMA',no:'Quick iconic photo stop. Lunch options nearby.'},
+ {t:'2:30–4:00 PM',tp:'',n:'The Last Bookstore + Downtown LA',no:'Bookstore + quick downtown look. Bradbury Building exterior / Grand Central Market nearby.'},
+ {t:'4:15–5:00 PM',tp:'',n:'Angels Flight + Grand Central Market',no:'Historic funicular + snack option.'},
+ {t:'6:00–8:30 PM',tp:'o',n:'Dinner — Koreatown / WeHo / westside',no:'Friday night parking can be rough. Choose based on where you are.'},
+],
+must:['Griffith Observatory + Hollywood Sign viewpoint','Beverly Hills / Rodeo Drive','Urban Light at LACMA','The Last Bookstore Downtown','Angels Flight funicular'],
+opt:['Hollywood Walk of Fame (very quick)','Getty Center (reserve in advance)','Greystone Mansion','Koreatown dinner','West Hollywood nightlife'],
+skip:['Universal Studios + all classic LA in one day','Catalina Island','Deep Pasadena'],
+stay:null,src:[]},
+
+/* 10 — Jul 18 */
+{dt:'Sat · Jul 18',dn:'Day 11',title:'LA → Orange County Coast → Escondido',sleep:'Hyatt Vacation Club at The Welk, Escondido',cat:'coast',mg:'t',star:false,hike:false,miles:130,
+fixed:'📌 Hyatt check-in — flexible, target 7–8:30 PM. Hard rule: if departing LA after 10:30 AM, simplify OC stops.',
+cut:'Correct southbound order: Crystal Cove → Laguna → Victoria Beach → Dana Point → San Clemente → Escondido. Cut Crystal Cove first if running late.',
+note:'<b>⚠️ Routing note:</b> Crystal Cove is <em>north</em> of Laguna Beach. Always go Crystal Cove → Laguna → Victoria → Dana Point → San Clemente heading south. Reversing this wastes 30–40 minutes.',
+tl:[
+ {t:'8:30–9:30 AM',tp:'dr',n:'Depart LA early',no:'Saturday I-405 south can be brutal. Leave before 9:30 AM. PCH via Santa Monica often faster.'},
+ {t:'10:45 AM–12:00 PM',tp:'',n:'Crystal Cove State Park',no:'Scenic bluff + beach. Beach parking fills — add walk time. CUT FIRST if late.'},
+ {t:'12:30–1:45 PM',tp:'',n:'Laguna Beach / Main Beach',no:'Lunch, walk, artsy beach town. Parking on Forest Ave structure.'},
+ {t:'2:00–2:45 PM',tp:'',n:'Victoria Beach / Pirate Tower',no:'Steep walk down stairs. Check tide. Safety first — skip if parking or conditions are bad.'},
+ {t:'3:20–4:00 PM',tp:'',n:'Dana Point Harbor',no:'Harbor or headland view. Easy, quick stop.'},
+ {t:'4:30–5:30 PM',tp:'',n:'San Clemente Pier',no:'Classic pier walk. Final OC coastal stop.'},
+ {t:'7:00–8:30 PM',tp:'f',n:'Hyatt Vacation Club at The Welk check-in',no:'8860 Lawrence Welk Dr, Escondido. Late check-in confirmed.'},
+],
+must:['Crystal Cove State Park (cut first if running late)','Laguna Beach / Main Beach','Victoria Beach / Pirate Tower','Dana Point Harbor walk','San Clemente Pier','Hyatt check-in Escondido'],
+opt:['Newport Beach / Balboa Island (if heading south early)','Heisler Park Laguna bluff walk'],
+skip:['Catalina Island','Full OC beach day','Palm Springs — wrong direction'],
+stay:null,
+src:[{l:'Hyatt at The Welk',u:'https://www.hyatt.com/hyatt-vacation-club/en-US/sansw-hyatt-vacation-club-at-the-welk'}]},
+
+/* 11 — Jul 19 */
+{dt:'Sun · Jul 19',dn:'Day 12',title:'San Diego Zoo + Balboa Park',sleep:'Escondido / Hyatt',cat:'city',mg:'e',star:false,hike:false,miles:74.5,
+fixed:null,cut:'Do not turn Balboa Park into a museum marathon after a full Zoo day.',
+note:'The Zoo alone takes 3–5 hours done properly. Use the bus tour early, prioritize your favorite areas. Balboa Park is beautiful to walk even without entering every museum.',
+tl:[
+ {t:'7:45–8:45 AM',tp:'dr',n:'Drive Escondido → San Diego Zoo',no:'Leave with buffer for parking and Zoo opening. Verify July hours before the trip.'},
+ {t:'9:00 AM–2:30 PM',tp:'',n:'San Diego Zoo',no:'Main day activity. Use bus tour early. 3–5 hrs to do properly. Use your Hyatt free tickets.'},
+ {t:'2:45–5:00 PM',tp:'',n:'Balboa Park walk',no:'Gardens, Botanical Building, architecture walk. Not a museum marathon.'},
+ {t:'5:30–7:30 PM',tp:'o',n:'Little Italy / Gaslamp / Old Town dinner',no:'Pick one dinner district. Old Town has easier parking.'},
+ {t:'8:30–9:30 PM',tp:'dr',n:'Return to Hyatt',no:'Rest before 9:30 AM presentation tomorrow. No late night.'},
+],
+must:['San Diego Zoo (use Hyatt free tickets)','Balboa Park walk — gardens, Botanical Building','Dinner in Little Italy or Gaslamp Quarter'],
+opt:['Japanese Friendship Garden','Balboa Park Museum of Art','Old Town San Diego (easier parking alternative)'],
+skip:['SeaWorld — Zoo is the better choice','La Jolla + Torrey Pines today — saved for July 20','All-beach day — wrong day for it'],
+stay:null,src:[{l:'San Diego Zoo',u:'https://zoo.sandiegozoo.org/plan-your-visit'}]},
+
+/* 12 — Jul 20 */
+{dt:'Mon · Jul 20',dn:'Day 13',title:'Hyatt Presentation + San Diego Coast',sleep:'Escondido / Hyatt',cat:'city',mg:'m',star:false,hike:false,miles:91,
+fixed:'📌 Hyatt Presentation — 9:30 AM. Attend fully. Build lunch + drive buffer afterward.',
+cut:'Keep coast north-to-south. Do not try Coronado + Cabrillo + La Jolla + Torrey Pines + Mission Bay all in one afternoon.',
+note:'After the presentation you\'ll have from ~noon. La Jolla Cove → Torrey Pines → Sunset Cliffs is a perfect afternoon loop. Don\'t pile more on top of it.',
+tl:[
+ {t:'9:30–11:30 AM',tp:'f',n:'Hyatt Presentation',no:'Fixed. May run long. Build lunch + drive buffer after.'},
+ {t:'12:30–1:30 PM',tp:'',n:'Torrey Pines State Natural Reserve',no:'Start coastal day north-to-south. Lunch nearby.'},
+ {t:'1:45–2:30 PM',tp:'',n:'Torrey Pines Gliderport / Cliffhanger Café',no:'Ocean cliff + paragliders. Very efficient scenic stop.'},
+ {t:'3:00–4:30 PM',tp:'',n:'La Jolla Cove',no:'Sea lions on the rocks, coastal village walk. Parking is hard — be patient.'},
+ {t:'5:30–7:00 PM',tp:'',n:'Sunset Cliffs Natural Park',no:'Stay on trails, away from edges. Protected sunset stop.'},
+ {t:'7:30–9:00 PM',tp:'o',n:'Dinner + return Hyatt',no:'Ocean Beach, Little Italy, or en route to Escondido.'},
+],
+must:['Torrey Pines State Natural Reserve','Torrey Pines Gliderport + Cliffhanger Café','La Jolla Cove (sea lions!)','Sunset Cliffs Natural Park'],
+opt:['La Jolla kayaking — if pre-booked, takes over the afternoon','Mission Bay / Pacific Beach','Cabrillo National Monument','Coronado Island'],
+skip:['Everything after a 9:30 AM presentation in one afternoon','SeaWorld','Full Coronado + Cabrillo + La Jolla + Torrey Pines + Mission Bay all in one afternoon'],
+stay:null,src:[]},
+
+/* 13 — Jul 21 */
+{dt:'Tue · Jul 21',dn:'Day 14',title:'Drive Day — Escondido to Sedona / Flagstaff',sleep:'Sedona or Flagstaff',cat:'drive',mg:'d',star:false,hike:false,miles:445,
+fixed:null,cut:'No hiking or sightseeing today. Drive-and-rest day only. Check out by 7 AM.',
+note:'<b>Leave by 7:00 AM.</b> This goes through Phoenix — unavoidable. Sedona at arrival is one of the most magical moments on the trip if you time it right for sunset. Flagstaff reduces logistics stress for Grand Canyon.',
+tl:[
+ {t:'7:00–7:30 AM',tp:'dr',n:'Depart Escondido',no:'Long eastbound drive. Pack water + snacks. Gas before desert.'},
+ {t:'9:30–10:00 AM',tp:'m',n:'Desert gas/rest stop',no:'Indio / Blythe area. Desert heat — check tire pressure + water.'},
+ {t:'12:15–1:00 PM',tp:'m',n:'Lunch + gas',no:'Quartzsite / Phoenix west side area, AZ. Keep it efficient.'},
+ {t:'3:00–3:30 PM',tp:'m',n:'Final rest stop',no:'Camp Verde / Cottonwood / Flagstaff route. Last break before hotel.'},
+ {t:'5:00–6:30 PM',tp:'dr',n:'Arrive Sedona or Flagstaff',no:'Airport Mesa sunset only if arriving with daylight. No hiking today.'},
+],
+must:['Leave Escondido by 7 AM','Fuel + water before the desert','Gas + rest stops only','Arrive, check in, dinner, sleep'],
+opt:['Airport Mesa sunset viewpoint Sedona (only if arriving with daylight before 7 PM)','Flagstaff dinner if staying there'],
+skip:['Joshua Tree — wrong direction','Palm Springs sightseeing','Cathedral Rock / Devil\'s Bridge hiking today','Long Phoenix stop'],
+stay:{o:[['Sedona','Best scenery — worth the premium if arriving before 6:30 PM'],['Flagstaff','More practical, cooler, less stress for GC logistics'],['Williams','Best Grand Canyon positioning']],p:'Sedona if arriving before 6:30 PM with daylight. Flagstaff if arriving after dark.'},
+src:[]},
+
+/* 14 — Jul 22 */
+{dt:'Wed · Jul 22',dn:'Day 15',title:'Sedona → Grand Canyon South Rim',sleep:'Grand Canyon Village / Tusayan / Williams',cat:'canyon',mg:'m',star:true,hike:false,miles:124.5,
+fixed:null,cut:'Rim views and easy walks only. Do NOT hike into the inner canyon in July — inner canyon hits 110°F+.',
+warn:'<b>July inner canyon warning:</b> The South Rim is ~80°F and comfortable. The inner canyon regularly hits 110°F+ in July. Rim Trail only. Do not hike down.',
+note:'One of the great moments on this trip. The Grand Canyon sunset from the rim is a life-changing view. Give it time.',
+tl:[
+ {t:'8:00–9:15 AM',tp:'o',n:'Sedona viewpoint or Oak Creek Canyon',no:'Airport Mesa if staying Sedona. Oak Creek Canyon on AZ-89A is scenic en route.'},
+ {t:'11:00 AM–12:00 PM',tp:'',n:'Arrive Grand Canyon South Rim',no:'Park + walk to Mather Point. Parking fills by 10 AM on busy summer days.'},
+ {t:'12:00–1:00 PM',tp:'',n:'Mather Point',no:'First big rim view. Short walk from visitor center. Unmissable.'},
+ {t:'1:15–2:30 PM',tp:'',n:'Yavapai Point + Rim Trail',no:'Easy paved flat walk. Incredible layered canyon views.'},
+ {t:'3:00–5:00 PM',tp:'o',n:'Desert View Drive / Watchtower OR Hermits Rest',no:'Choose one: drive east to Desert View Watchtower, or take shuttle west.'},
+ {t:'6:30–7:45 PM',tp:'',n:'Grand Canyon sunset',no:'Hopi Point, Yavapai, or Mather. Protect this. One of the great sunsets on earth.'},
+ {t:'8:15–9:00 PM',tp:'m',n:'Hotel + dinner',no:'Tusayan is 5 min from entrance. Williams is cheaper but 60 min from rim.'},
+],
+must:['Sedona morning viewpoint or Oak Creek Canyon en route','Grand Canyon South Rim — Mather Point','Yavapai Point + Rim Trail walk','Grand Canyon sunset — one of the great sunsets on earth'],
+opt:['Desert View Watchtower (eastern end, 25 min from Mather)','Hopi Point / Yaki Point sunset','Grandview Point'],
+skip:['Any hiking into the inner canyon in July heat','Grand Canyon West — 3 hrs away','North Rim — 4+ hrs','Monument Valley — different trip'],
+stay:{o:[['Grand Canyon Village','Best location — book 12+ months ahead'],['Tusayan','5 min from South Rim — best practical option'],['Williams','Cheaper Route 66 base, 60 min from rim'],['Flagstaff','Most hotel options, 80 min from rim']],p:'Tusayan if available. Flagstaff as backup.'},
+src:[{l:'Grand Canyon Visitor Center',u:'https://www.nps.gov/grca/planyourvisit/grand-canyon-visitor-center.htm'},{l:'Mather Point NPS',u:'https://www.nps.gov/places/000/mather-point.htm'}]},
+
+/* 15 — Jul 23 */
+{dt:'Thu · Jul 23',dn:'Day 16',title:'Grand Canyon → Antelope Canyon + Horseshoe Bend → Page',sleep:'Page, Arizona',cat:'national',mg:'m',star:true,hike:false,miles:149,
+fixed:'📌 Antelope Canyon guided tour — BOOK NOW. antelopecanyon.com / lowerantelope.com. July = peak season, sells out months ahead. Upper: 10 AM–1 PM for light beams.',
+cut:'Leave Grand Canyon by 7:30 AM. Sleep in Page tonight — do not push to Springdale. Book Antelope Canyon before anything else.',
+note:'<b>Sleeping in Page tonight is the right call.</b> It makes this a relaxed, great day. Zion starts fresh from a short morning drive tomorrow.',
+tl:[
+ {t:'4:45–6:15 AM',tp:'',n:'Grand Canyon sunrise at Mather Point',no:'Sunrise ~5:15 AM July. Bring layers + coffee. One of the most beautiful moments on the trip. Skip only if exhausted.'},
+ {t:'7:30–10:15 AM',tp:'dr',n:'Drive Grand Canyon → Page, AZ',no:'~2.5 hrs. Use Desert View route if open. Glen Canyon Dam overlook if arriving early.'},
+ {t:'10:30–11:30 AM',tp:'m',n:'Early lunch + tour check-in',no:'Eat and arrive early at tour operator. Check-in before departure required.'},
+ {t:'12:00–2:00 PM',tp:'f',n:'Antelope Canyon guided tour',no:'Navajo-guided, mandatory — no entry without a reservation. Upper: light beams. Lower: less crowded. Canyon X: good alternative.'},
+ {t:'2:45–4:15 PM',tp:'',n:'Horseshoe Bend',no:'1.5 mi RT walk. Bring water + hat — 100°F exposed. $10 parking (City of Page, not NPS). Stay back from edge.'},
+ {t:'4:30–6:00 PM',tp:'o',n:'Glen Canyon Dam overlook / Lake Powell',no:'Easy add-on from Page. 5-min drive.'},
+ {t:'6:30–8:00 PM',tp:'f',n:'Sleep in Page — do not push to Springdale',no:'Key decision that keeps July 23 manageable. Rest well.'},
+],
+must:['Grand Canyon sunrise at Mather Point','Antelope Canyon guided tour (Upper or Lower — book NOW)','Horseshoe Bend (bring water + hat — 100°F exposed)'],
+opt:['Glen Canyon Dam overlook','Lake Powell viewpoint from bridge'],
+skip:['The Wave — permit lottery, different experience entirely','Monument Valley — adds 2+ hrs wrong direction','Pushing to Springdale tonight — Page is the right sleep'],
+stay:{o:[['Page, Arizona','The right call — perfectly positioned for both canyon sights, short morning drive to Zion']],p:'Sleep in Page. No debate on this one.'},
+src:[{l:'Upper Antelope Canyon',u:'https://antelopecanyon.com'},{l:'Lower Antelope Canyon',u:'https://lowerantelope.com'},{l:'Antelope Canyon operators',u:'https://navajonationparks.org/guided-tour-operators/antelope-canyon-tour-operators/'},{l:'Horseshoe Bend NPS',u:'https://www.nps.gov/glca/planyourvisit/horseshoe-bend.htm'}]},
+
+/* 16 — Jul 24 */
+{dt:'Fri · Jul 24',dn:'Day 17',title:'Page → Zion-Lite → Boulder City',sleep:'Boulder City / Henderson',cat:'national',mg:'t',star:true,hike:false,miles:286,
+fixed:null,cut:'Zion-lite only — no major hikes. Leave Springdale by ~2:30 PM to reach Boulder City at a reasonable hour.',
+warn:'<b>July 24 is the second-hardest drive day</b> (~7.3 hrs total including the morning leg from Page). Zion is a scenic sampler, not a full day. Manage expectations and enjoy what you see.',
+note:'<b>Zion shuttle rules:</b> Personal vehicles are NOT allowed on Zion Canyon Scenic Drive during shuttle season. Park in Springdale or Visitor Center lot and take the free NPS shuttle. No reservation needed for the shuttle.',
+tl:[
+ {t:'6:45–7:15 AM',tp:'dr',n:'Depart Page early',no:'Early start keeps Zion experience possible. Note: gain an hour entering Utah.'},
+ {t:'9:30–10:15 AM',tp:'dr',n:'Arrive Zion / Visitor Center',no:'Park in Springdale. Shuttle is the only way into the canyon during season.'},
+ {t:'10:30 AM–1:30 PM',tp:'',n:'Zion Canyon shuttle scenic stops',no:'Ride the free shuttle. Do ONE easy walk: Riverside Walk OR Court of the Patriarchs. Emerald Pools only if heat + energy allow.'},
+ {t:'1:30–2:30 PM',tp:'m',n:'Springdale lunch + reset',no:'Eat before long drive to Nevada. Leave Springdale by 2:30 PM.'},
+ {t:'5:45–7:15 PM',tp:'dr',n:'Arrive Boulder City / Henderson',no:'~3–4.5 hrs from Zion. Check in, dinner, rest before kayak tour.'},
+],
+must:['Zion Canyon shuttle scenic stops — ride the free shuttle','Riverside Walk OR Court of the Patriarchs (pick one easy walk)','Leave Springdale by 2:30 PM for Boulder City'],
+opt:['Emerald Pools if heat/energy allow','Canyon Overlook Trail if parking + timing work','Springdale coffee + breakfast before shuttle'],
+skip:['Angel\'s Landing without a permit — lottery required','Long hikes — this is Zion-lite','Bryce Canyon — full extra day, different trip'],
+stay:{o:[['Boulder City','Best for Emerald Cave tour launch (Willow Beach, 20 min away)'],['Henderson','10 min from Boulder City, slightly more options']],p:'Boulder City — positioned perfectly for the Emerald Cave kayak tour tomorrow morning.'},
+src:[{l:'Zion shuttle system',u:'https://www.nps.gov/zion/planyourvisit/zion-canyon-shuttle-system.htm'},{l:'Zion 2026 shuttle update',u:'https://www.nps.gov/zion/learn/news/2026-02-06-shuttle-schedule.htm'}]},
+
+/* 17 — Jul 25 */
+{dt:'Sat · Jul 25',dn:'Day 18',title:'Emerald Cave + Hoover Dam → Fly Home',sleep:'✈ Late flight from Las Vegas',cat:'national',mg:'e',star:false,hike:false,miles:89,
+fixed:'📌 Book morning Emerald Cave kayak tour — ezkayaktours.com. Late LAS flight strongly preferred (9:30–10 PM or later).',
+cut:'If flight is before 9:30 PM, shorten Hoover Dam or skip interior tour. Do exterior + bridge only.',
+note:'<b>Perfect ending.</b> The Emerald Cave kayak tour is genuinely surreal — the Colorado River carved through dramatic canyon walls, the cave glowing emerald green from reflected light. Do the morning tour, Hoover Dam after, lunch in Boulder City, LAS by 4–5 PM.',
+tl:[
+ {t:'7:15–8:00 AM',tp:'dr',n:'Drive to Willow Beach Marina',no:'Boulder City → Willow Beach Marina, 25804 N Willow Beach, AZ. Leave early.'},
+ {t:'8:30 AM–12:30 PM',tp:'f',n:'Emerald Cave kayak tour',no:'3–4 hrs guided. Dry bag, sunscreen, water. Wind can affect tours — verify launch time morning-of.'},
+ {t:'1:15–3:00 PM',tp:'',n:'Hoover Dam + Memorial Bridge viewpoint',no:'Dam exterior + visitor center (open 9–5, doors close 4:15 PM). Bridge viewpoint is free and stunning.'},
+ {t:'3:00–5:30 PM',tp:'m',n:'Late lunch / return toward LAS',no:'Large buffer for tour delay + Hoover. Henderson dinner if flight after 10 PM.'},
+ {t:'5:30–7:00 PM',tp:'f',n:'Return rental car + LAS airport',no:'Rental Car Center, 7135 Gilespie St, Las Vegas. Aim 2.5–3 hrs before late flight.'},
+],
+must:['Emerald Cave kayak tour from Willow Beach (book in advance)','Hoover Dam exterior + visitor area','Mike O\'Callaghan–Pat Tillman Memorial Bridge viewpoint','Return rental car at LAS Rental Car Center'],
+opt:['Hoover Dam interior tour (if plenty of time)','Boulder City lunch before airport','Henderson dinner if flight is very late'],
+skip:['Grand Canyon West — too far','Valley of Fire','Red Rock Canyon','Full Las Vegas sightseeing day'],
+stay:null,
+src:[{l:'Emerald Cave kayak tours',u:'https://ezkayaktours.com/emerald-cave-kayak-tours/'},{l:'Hoover Dam hours',u:'https://www.usbr.gov/lc/hooverdam/service/'}]},
+];
+
+const bookings=[
+  {p:'p1',pri:'🔴',what:'Antelope Canyon Guided Tour — July 23',when:'BOOK TODAY. Upper: antelopecanyon.com · Lower: lowerantelope.com · Aim for 10:00–10:30 AM slot for light beams. July sells out months ahead.',url:'https://navajonationparks.org/guided-tour-operators/antelope-canyon-tour-operators/'},
+  {p:'p1',pri:'🔴',what:'Emerald Cave Kayak Tour — July 25',when:'Book morning slot ASAP at ezkayaktours.com. Willow Beach, AZ. Fills up.',url:'https://ezkayaktours.com/emerald-cave-kayak-tours/'},
+  {p:'p2',pri:'🟡',what:'Point Lobos Reservation — July 13',when:'Check reserve.ca.gov — day-use reservation may be required in summer.',url:'https://www.parks.ca.gov/pointlobos'},
+  {p:'p2',pri:'🟡',what:'Pfeiffer Beach Parking — July 14',when:'Book at recreation.gov if doing this stop. $12/vehicle. Sells out in July.',url:'https://www.fs.usda.gov/r05/lospadres/recreation/pfeiffer-beach-day-use'},
+  {p:'p2',pri:'🟡',what:'Carmel Hotel — July 12 & 13 nights',when:'July weekends fill up in Carmel-by-the-Sea. Book now.',url:''},
+  {p:'p3',pri:'🟢',what:'Verify Sphere ticket time — July 10',when:'Confirm 2 PM on Ticketmaster confirmation. Print or save to phone.',url:'https://www.ticketmaster.com/the-wizard-of-oz-at-sphere-tickets/artist/3552227'},
+  {p:'p3',pri:'🟢',what:'San Diego Zoo hours — July 19',when:'Verify exact July 2026 hours at zoo.sandiegozoo.org before the trip.',url:'https://zoo.sandiegozoo.org/plan-your-visit'},
+  {p:'p3',pri:'🟢',what:'Zion shuttle status — July 24',when:'Confirm at nps.gov/zion — personal vehicles not allowed on Zion Canyon Scenic Drive during shuttle season.',url:'https://www.nps.gov/zion/planyourvisit/zion-canyon-shuttle-system.htm'},
+  {p:'p3',pri:'🟢',what:'Highway 1 / Big Sur status — July 14',when:'Check quickmap.dot.ca.gov the night before and morning of July 14.',url:'https://roads.dot.ca.gov/?roadnumber=1'},
+];
+
+const saves=[
+  {cat:'Yosemite & Sierra Nevada',items:['Yosemite Falls','El Capitan','Half Dome','Tunnel View','Bridalveil Fall','Vernal Fall','Tioga Pass high country','Taft Point']},
+  {cat:'Mammoth Lakes & Eastern Sierra',items:['Alabama Hills / Mobius Arch','Convict Lake','Mammoth Lakes Basin','Hot Creek Geologic Site','Mono Lake Tufa Towers','June Lake Loop','Bishop Creek']},
+  {cat:'Sequoia & Kings Canyon',items:['General Sherman Tree','Moro Rock','Tunnel Log','Tokopah Falls','Grizzly Giant']},
+  {cat:'Death Valley (Oct–Apr only)',items:['Badwater Basin','Zabriskie Point','Mesquite Flat Sand Dunes','Artists Palette','Dante\'s View']},
+  {cat:'Northern California & Redwoods',items:['Avenue of the Giants','Jedediah Smith Redwoods','Trees of Mystery','Point Reyes','Mendocino','Skunk Train']},
+  {cat:'Utah — More Canyon Country',items:['Bryce Canyon','The Wave (permit lottery)','Moab / Arches NP','Canyonlands NP','Capitol Reef','Monument Valley']},
+  {cat:'Lake Tahoe',items:['Emerald Bay State Park','Sand Harbor','Vikingsholm Trail','D.L. Bliss State Park','Bonsai Rock']},
+];
+
+/* ── BUILD ── */
+function mLabel(m){return{e:'Easy',l:'Easy / Local',m:'Moderate',t:'Tight Day',d:'Drive-Only'}[m]||m;}
+function mClass(m){return{e:'be',l:'bl',m:'bm',t:'bt',d:'bd'}[m]||'bm';}
+function tClass(c){return{vegas:'tv',drive:'tdr',city:'tci',coast:'tco',canyon:'tca',national:'tn'}[c]||'tci';}
+function tLabel(c){return{vegas:'Las Vegas',drive:'Drive Day',city:'City',coast:'Coast / PCH',canyon:'Canyon Country',national:'National Park'}[c]||c;}
+function tiClass(tp){return{f:'tf',o:'to',m:'tm',dr:'tdr2',hike:'thike'}[tp]||'';}
+
+function buildRoute(){
+  const el=document.getElementById('rstrip');
+  routeStops.forEach((s,i)=>{
+    const sp=document.createElement('span');sp.className='rs';sp.textContent=s;el.appendChild(sp);
+    if(i<routeStops.length-1){const a=document.createElement('span');a.className='ra';a.textContent='›';el.appendChild(a);}
+  });
+}
+
+function buildHikeBox(h){
+  return `<div class="hike-box">
+    <div class="hike-box-hd">
+      <span class="hike-box-title">🥾 ${h.name}</span>
+      <span class="hike-status ${h.status.includes('CLOSED')||h.status.includes('only')?'':''}">✓ ${h.status}</span>
+    </div>
+    <div class="hike-body">
+      <div class="hike-row"><span class="hike-lbl">Distance</span><span class="hike-val">${h.dist}</span></div>
+      <div class="hike-row"><span class="hike-lbl">Time</span><span class="hike-val">${h.time}</span></div>
+      <div class="hike-row"><span class="hike-lbl">Difficulty</span><span class="hike-val">${h.diff}</span></div>
+      <div class="hike-row"><span class="hike-lbl">Best slot</span><span class="hike-val">${h.fit}</span></div>
+      <div class="hike-note">${h.note}</div>
+      <div class="hike-verdict">📍 ${h.verdict}</div>
+      <div><a href="${h.src.u}" target="_blank" class="srclink">↗ ${h.src.l}</a></div>
+    </div>
+  </div>`;
+}
+
+function buildCard(d,idx){
+  const card=document.createElement('div');
+  card.className='dc';
+  card.dataset.cat=d.cat;
+  card.style.animationDelay=`${idx*28}ms`;
+
+  const ch=document.createElement('div');
+  ch.className='ch';
+  ch.innerHTML=`
+    <div>
+      <div class="hdate">${d.dt}</div>
+      <div class="hday">${d.dn} of 18</div>
+      ${d.miles?`<div class="hdrive">🚗 ~${d.miles} mi</div>`:''}
+    </div>
+    <div>
+      <div class="htitle">${d.title}${d.star?'<span class="star">★</span>':''}${d.hike?'<span class="hike-flag">🥾 hike</span>':''}</div>
+      <div class="hsleep">🛏 ${d.sleep}</div>
+    </div>
+    <div class="hright">
+      <span class="badge ${mClass(d.mg)}">${mLabel(d.mg)}</span>
+      <span class="tag ${tClass(d.cat)}">${tLabel(d.cat)}</span>
+      <span class="chev">▾</span>
+    </div>`;
+  ch.addEventListener('click',()=>toggle(card));
+
+  const cb=document.createElement('div');
+  cb.className='cb';
+  let h='<div class="cbi">';
+
+  if(d.fixed) h+=`<div class="fpill">${d.fixed}</div>`;
+  if(d.cut) h+=`<div class="cbox"><b>Hard cut rule:</b> ${d.cut}</div>`;
+  if(d.warn) h+=`<div class="wbox">${d.warn}</div>`;
+  if(d.note) h+=`<div class="nbox">${d.note}</div>`;
+
+  // Timeline
+  if(d.tl&&d.tl.length){
+    h+=`<div><div class="sl-lbl sl-time">Hourly Plan</div><div class="tl">`;
+    d.tl.forEach(t=>{
+      h+=`<div class="tli ${tiClass(t.tp)}"><div class="tt">${t.t}</div><div><div class="tn2">${t.n}</div>${t.no?`<div class="tnote">${t.no}</div>`:''}</div></div>`;
+    });
+    h+='</div></div>';
+  }
+
+  // Hike boxes
+  if(d.hikes&&d.hikes.length){
+    h+=`<div><div class="sl-lbl sl-hike">Hike Options for This Day</div>${d.hikes.map(hk=>buildHikeBox(hk)).join('')}</div>`;
+  }
+
+  h+=`<div class="sl-lbl sl-must" style="margin-bottom:7px;">Must-See / Planned</div><div class="ilist">${d.must.map(m=>`<div class="mi">${m}</div>`).join('')}</div>`;
+  if(d.opt&&d.opt.length) h+=`<div><div class="sl-lbl sl-opt">Optional — If Time Allows</div><div class="ilist">${d.opt.map(o=>`<div class="oi">${o}</div>`).join('')}</div></div>`;
+  if(d.skip&&d.skip.length) h+=`<div><div class="sl-lbl sl-skip">Not Enough Time — Save for Later</div><div class="sw">${d.skip.map(s=>`<span class="si">${s}</span>`).join('')}</div></div>`;
+
+  if(d.stay){
+    h+=`<div><div class="sl-lbl sl-stay">Where to Stay</div><div class="sgrid">`;
+    d.stay.o.forEach(o=>{h+=`<div class="srow"><span class="sname">${o[0]}</span><span class="sdesc">${o[1]}</span></div>`;});
+    h+=`</div><div class="spick">📍 ${d.stay.p}</div></div>`;
+  }
+
+  if(d.src&&d.src.length){
+    h+=`<div><div class="sl-lbl sl-src">Verify Before You Go</div><div class="srcwrap">${d.src.map(s=>`<a href="${s.u}" target="_blank" class="srclink">↗ ${s.l}</a>`).join('')}</div></div>`;
+  }
+
+  h+='</div>';
+  cb.innerHTML=h;
+  card.appendChild(ch);
+  card.appendChild(cb);
+  return card;
+}
+
+function buildBookings(){
+  const sec=document.createElement('div');sec.className='book-sec';
+  sec.innerHTML=`<div class="book-hd"><h3>🔴 Book These Before You Go</h3><p>Priority order — some will sell out if you wait</p></div>`;
+  const list=document.createElement('div');list.className='book-list';
+  bookings.forEach(b=>{
+    const row=document.createElement('div');row.className=`brow ${b.p}`;
+    row.innerHTML=`<span style="font-size:13px;">${b.pri}</span>
+      <div><div class="bwhat">${b.what}</div><div class="bwhen">${b.when}</div></div>
+      ${b.url?`<a href="${b.url}" target="_blank" class="blink">Book ↗</a>`:'<span></span>'}`;
+    list.appendChild(row);
+  });
+  sec.appendChild(list);return sec;
+}
+
+function buildSave(){
+  const sec=document.createElement('div');sec.className='save';
+  const hd=document.createElement('div');hd.className='save-hd';
+  hd.innerHTML=`<div><div class="save-hd-t">Save for Another Trip</div><div class="save-hd-s">Great places that don't fit this July loop</div></div><span class="chev">▾</span>`;
+  const bd=document.createElement('div');bd.className='save-bd';
+  bd.innerHTML=saves.map(s=>`<div class="scat"><div class="scat-l">${s.cat}</div><div class="sitems">${s.items.map(i=>`<span class="sitem">${i}</span>`).join('')}</div></div>`).join('');
+  hd.addEventListener('click',()=>{
+    const open=bd.classList.toggle('open');
+    hd.querySelector('.chev').style.transform=open?'rotate(180deg)':'';
+  });
+  sec.appendChild(hd);sec.appendChild(bd);return sec;
+}
+
+function buildMain(){
+  buildRoute();
+  const main=document.getElementById('main');
+  phases.forEach(ph=>{
+    const div=document.createElement('div');div.className='ph';
+    div.dataset.phase=ph.t;
+    div.innerHTML=`<div class="ph-ln"></div><span class="ph-sub">${ph.s}</span><span class="ph-t">${ph.t}</span><div class="ph-ln"></div>`;
+    main.appendChild(div);
+    ph.d.forEach(di=>{
+      const card=buildCard(D[di],di);
+      card.dataset.phase=ph.t;
+      main.appendChild(card);
+    });
+  });
+  main.appendChild(buildBookings());
+  main.appendChild(buildSave());
+  const ft=document.createElement('footer');
+  ft.textContent='Vegas to Vegas · July 8–25, 2026 · The Great Southwest Loop · ~2,400 miles · Last updated May 2026';
+  document.body.appendChild(ft);
+}
+
+function toggle(card){
+  const ch=card.querySelector('.ch'),cb=card.querySelector('.cb');
+  const open=cb.classList.toggle('open');
+  ch.classList.toggle('open',open);
+  card.classList.toggle('open',open);
+}
+
+document.querySelectorAll('.tb').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    const f=btn.dataset.f;
+    document.querySelectorAll('.dc').forEach(c=>c.classList.toggle('hidden',f!=='all'&&c.dataset.cat!==f));
+    document.querySelectorAll('.ph').forEach(ph=>{
+      if(f==='all'){ph.style.display='';return;}
+      const cards=document.querySelectorAll(`.dc[data-phase="${ph.dataset.phase}"]`);
+      ph.style.display=[...cards].some(c=>!c.classList.contains('hidden'))?'':'none';
+    });
+  });
+});
+document.getElementById('expAll').addEventListener('click',()=>{
+  document.querySelectorAll('.dc:not(.hidden)').forEach(c=>{c.querySelector('.cb').classList.add('open');c.querySelector('.ch').classList.add('open');c.classList.add('open');});
+});
+document.getElementById('colAll').addEventListener('click',()=>{
+  document.querySelectorAll('.dc').forEach(c=>{c.querySelector('.cb').classList.remove('open');c.querySelector('.ch').classList.remove('open');c.classList.remove('open');});
+});
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>toTop.classList.toggle('show',window.scrollY>400));
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+buildMain();
+</script>
+</body>
+</html>
